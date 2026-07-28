@@ -55,9 +55,9 @@ export default function App() {
 
   if (!isLoggedIn) {
     return (
-      <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-        <h2>Enter Your Name to Join Chat</h2>
-        <form onSubmit={handleLogin}>
+      <div className="container">
+        <h2>Enter Your Name</h2>
+        <form onSubmit={handleLogin} className="form-group">
           <input
             type="text"
             value={username}
@@ -71,11 +71,11 @@ export default function App() {
   }
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h2>Sprint 12 - Track B: Real-Time Pipeline</h2>
+    <div className="container">
+      <h2>Chat Room</h2>
       <p>Logged in as: <strong>{username}</strong></p>
 
-      <form onSubmit={handleSend}>
+      <form onSubmit={handleSend} className="form-group">
         <input
           type="text"
           value={text}
@@ -85,13 +85,15 @@ export default function App() {
         <button type="submit">Send</button>
       </form>
 
-      {typingUser && <p style={{ fontStyle: 'italic', color: 'gray' }}>{typingUser} is typing...</p>}
+      {typingUser && <p className="typing-text">{typingUser} is typing...</p>}
 
-      <div>
+      <div className="message-box">
         {messages.map((msg, index) => (
-          <div key={index}>
-            <small><strong>{msg.author}</strong> ({msg.time}):</small>
-            <p>{msg.text}</p>
+          <div key={index} className="message-item">
+            <div className="message-meta">
+              <strong>{msg.author}</strong> ({msg.time})
+            </div>
+            <div>{msg.text}</div>
           </div>
         ))}
       </div>
