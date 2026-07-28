@@ -30,17 +30,18 @@ websocket-chat-pipeline/
 ├── .gitignore
 └── vercel.json
 
-Getting Started
+##Getting Started
 Follow the instructions below to set up and run the project locally.
 
 1. Clone the Repository
-Bash
-git clone https://github.com/vandanamahant/websocket-chat-pipeline.git
+```Bash
+git clone [https://github.com/vandanamahant/websocket-chat-pipeline.git](https://github.com/vandanamahant/websocket-chat-pipeline.git)
 cd websocket-chat-pipeline
+
 2. Configure and Run the Backend
 Navigate to the backend directory, install dependencies, and start the server:
 
-Bash
+```Bash
 cd backend
 npm install
 node server.js
@@ -49,10 +50,11 @@ node server.js
 3. Configure and Run the Frontend
 Open a new terminal window, navigate to the frontend directory, install dependencies, and start the development server:
 
-Bash
+```Bash
 cd frontend
 npm install
 npm run dev
+
 Environment Variables
 To configure the backend connection locally, create a .env file inside the frontend folder with the following variable:
 
