@@ -19,7 +19,6 @@ A modern, full-stack real-time chat application built with a React (Vite) fronte
 ---
 
 ## Project Structure
-```text
 websocket-chat-pipeline/
 ├── backend/
 │   ├── server.js
@@ -30,36 +29,32 @@ websocket-chat-pipeline/
 ├── .gitignore
 └── vercel.json
 
+---
+
 ## Getting Started
 
 Follow the instructions below to set up and run the project locally.
 
 ### 1. Clone the Repository
-```bash
-git clone [https://github.com/vandanamahant/websocket-chat-pipeline.git](https://github.com/vandanamahant/websocket-chat-pipeline.git)
+git clone https://github.com/vandanamahant/websocket-chat-pipeline.git
 cd websocket-chat-pipeline
 
 ### 2. Configure and Run the Backend
 Navigate to the backend directory, install dependencies, and start the server:
-
-```bash
 cd backend
 npm install
 node server.js
-
 *(The backend server will run on http://localhost:5000 by default).*
 
 ### 3. Configure and Run the Frontend
 Open a new terminal window, navigate to the frontend directory, install dependencies, and start the development server:
-
-```bash
 cd frontend
 npm install
 npm run dev
 
+---
+
 ## Environment Variables
+To configure the backend connection locally, create a .env file inside the frontend folder with the following variable:
 
-To configure the backend connection locally, create a `.env` file inside the frontend folder with the following variable:
-
-```env
 VITE_BACKEND_URL=http://localhost:5000
