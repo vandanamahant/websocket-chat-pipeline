@@ -18,22 +18,6 @@ A modern, full-stack real-time chat application built with a React (Vite) fronte
 
 ---
 
-## Project Structure
-```text
-websocket-chat-pipeline/
-├── backend/
-│   ├── server.js
-│   └── package.json
-├── frontend/
-│   ├── src/
-│   └── package.json
-├── .gitignore
-└── vercel.json
-
----
-
----
-
 ## Getting Started
 
 Follow the instructions below to set up and run the project locally.
