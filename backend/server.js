@@ -21,6 +21,10 @@ io.on('connection', (socket) => {
         io.emit('receive_message', data);
     });
 
+    socket.on('typing', (data) => {
+        socket.broadcast.emit('display_typing', data);
+    });
+
     socket.on('disconnect', () => {
         console.log(`Client disconnected: ${socket.id}`);
     });
