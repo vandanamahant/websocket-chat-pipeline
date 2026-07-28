@@ -5,6 +5,7 @@ const socket = io('http://localhost:5000');
 
 export default function App() {
   const [username, setUsername] = useState('');
+  const [room, setRoom] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [text, setText] = useState('');
   const [messages, setMessages] = useState([]);
@@ -28,14 +29,15 @@ export default function App() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username.trim()) {
+    if (username.trim() && room.trim()) {
+      socket.emit('join_room', room);
       setIsLoggedIn(true);
     }
   };
 
   const handleTyping = (e) => {
     setText(e.target.value);
-    socket.emit('typing', { user: username, isTyping: e.target.value.length > 0 });
+    socket.emit('typing', { room, user: username, isTyping: e.target.value.length > 0 });
   };
 
   const handleSend = (e) => {
@@ -43,20 +45,21 @@ export default function App() {
     if (!text.trim()) return;
 
     const payload = {
+      room,
       author: username,
-      text: text,
+      text,
       time: new Date().toLocaleTimeString(),
     };
 
     socket.emit('send_message', payload);
-    socket.emit('typing', { user: username, isTyping: false });
+    socket.emit('typing', { room, user: username, isTyping: false });
     setText('');
   };
 
   if (!isLoggedIn) {
     return (
       <div className="container">
-        <h2>Enter Your Name</h2>
+        <h2>Join Chat Room</h2>
         <form onSubmit={handleLogin} className="form-group">
           <input
             type="text"
@@ -64,7 +67,15 @@ export default function App() {
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Your name..."
           />
-          <button type="submit">Join</button>
+          <select
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+          >
+            <option value="">Select Room</option>
+            <option value="room1">Room 1</option>
+            <option value="room2">Room 2</option>
+          </select>
+          <button type="submit">Join Room</button>
         </form>
       </div>
     );
@@ -72,10 +83,10 @@ export default function App() {
 
   return (
     <div className="container">
-      <h2>Chat Room</h2>
+      <h2>Chat Room: {room.toUpperCase()}</h2>
       <p>Logged in as: <strong>{username}</strong></p>
 
-      <form onSubmit={handleSend} className="form-group">
+      <form onSubmit={handleSend} className="input-row">
         <input
           type="text"
           value={text}

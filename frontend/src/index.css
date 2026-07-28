@@ -16,11 +16,17 @@ body {
 
 .form-group {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 15px;
 }
 
-input {
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+input, select {
   flex: 1;
   padding: 8px 12px;
   border: 1px solid #ccc;
